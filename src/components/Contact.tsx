@@ -30,9 +30,6 @@ const Contact = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Get In <span className="gradient-text">Touch</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
-            Let's work together on your next project
-          </p>
         </div>
 
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
