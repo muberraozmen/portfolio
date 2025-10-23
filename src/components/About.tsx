@@ -72,64 +72,63 @@ const About = () => {
           </div>
         </div>
 
-  {/* Keep cards row-based (stacked vertically) and match Posts max width */}
+  {/* Render each section and its entries as separate cards, matching Posts max width */}
   <div className="flex flex-col gap-8 mb-12 max-w-6xl mx-auto">
-          {highlights.map((item, index) => (
-            <Card 
-              key={index} 
-              className="border-border/50 hover:shadow-glow transition-all duration-300 animate-fade-in"
-              style={{ animationDelay: `${index * 0.2}s` }}
-            >
-              <CardContent className="pt-6">
-                <item.icon className="w-12 h-12 text-primary mb-4" />
-                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                {Array.isArray(item.description) ? (
-                  <div className="text-muted-foreground space-y-2">
-                    {item.description.map((entry: any, i: number) => (
-                      <div key={i} className="grid grid-cols-[180px_1fr] gap-4 items-start">
-                        <span className="text-foreground/70 tabular-nums">{entry.date}</span>
-                        <div>
-                          <div className="text-foreground/80">
-                            {(entry.institution || entry.company) && (
-                              <>
-                                <a
-                                  href={entry.href}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="font-semibold hover:underline inline"
-                                >
-                                  {entry.institution || entry.company}
-                                </a>
-                                {(entry.program || entry.role) && (
-                                  <>
-                                    <span className="mx-2 text-foreground/60">—</span>
-                                    <span className="inline">{entry.program || entry.role}</span>
-                                  </>
-                                )}
-                              </>
-                            )}
+    {highlights.map((section, sIndex) => (
+      <div key={sIndex} className="space-y-4">
+        <div className="flex items-center gap-3">
+          <section.icon className="w-8 h-8 text-primary" />
+          <h3 className="text-xl font-semibold">{section.title}</h3>
+        </div>
 
-                            {entry.summary && (
-                              <div className="text-foreground/80 mt-2 space-y-1">
-                                {(Array.isArray(entry.summary) ? entry.summary : entry.summary.split(/\s*>\s*|\n/))
-                                  .filter(Boolean)
-                                  .map((line: string, idx: number) => (
-                                    <div key={idx}>{line.trim()}</div>
-                                  ))}
-                              </div>
-                            )}
-                          </div>
-                        </div>
+        <div className="flex flex-col gap-4">
+          {section.description.map((entry: any, i: number) => (
+            <Card
+              key={i}
+              className="border-border/50 hover:shadow-glow transition-all duration-300 animate-fade-in"
+              style={{ animationDelay: `${(sIndex + i) * 0.05}s` }}
+            >
+              <CardContent className="pt-4">
+                <div className="grid grid-cols-[140px_1fr] md:grid-cols-[180px_1fr] gap-4 items-start">
+                  <span className="text-foreground/70 tabular-nums">{entry.date}</span>
+                  <div>
+                    {(entry.institution || entry.company) && (
+                      <>
+                        <a
+                          href={entry.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-semibold hover:underline inline"
+                        >
+                          {entry.institution || entry.company}
+                        </a>
+                        {(entry.program || entry.role) && (
+                          <>
+                            <span className="mx-2 text-foreground/60">—</span>
+                            <span className="inline">{entry.program || entry.role}</span>
+                          </>
+                        )}
+                      </>
+                    )}
+
+                    {entry.summary && (
+                      <div className="text-foreground/80 mt-2 space-y-1">
+                        {(Array.isArray(entry.summary) ? entry.summary : entry.summary.split(/\s*>\s*|\n/))
+                          .filter(Boolean)
+                          .map((line: string, idx: number) => (
+                            <div key={idx}>{line.trim()}</div>
+                          ))}
                       </div>
-                    ))}
+                    )}
                   </div>
-                ) : (
-                  <p className="text-muted-foreground">{item.description}</p>
-                )}
+                </div>
               </CardContent>
             </Card>
           ))}
         </div>
+      </div>
+    ))}
+  </div>
 
         <div className="animate-fade-in" style={{ animationDelay: '0.6s' }}>
           <div className="max-w-6xl mx-auto">
