@@ -1,0 +1,66 @@
+# Dependencies
+node_modules/
+.cache/
+dist/
+build/
+
+# Bun
+.bun/
+bun-debug.log*
+
+# Environment
+.env
+.env.*
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Testing
+coverage/
+
+# TypeScript
+*.tsbuildinfo
+
+# Editor & OS
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+*.bak
+*.tmp
+*.old
+
+# Databases (if any local dev use)
+*.sqlite
+*.sqlite3
+*.db
+
+# Certificates / Secrets
+*.pem
+*.key
+*.crt
+*.cert
+*.p12
+*.der
+
+# Archives / Binaries
+*.zip
+*.tar.gz
+*.tgz
+*.7z
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Lockfiles — KEEP these in git for reproducibility
+# (do not ignore them)
+# bun.lockb
+# package-lock.json
+# yarn.lock
