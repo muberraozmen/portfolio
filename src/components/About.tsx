@@ -28,16 +28,18 @@ const About = () => {
     <section id="about" className="py-20 bg-secondary/30">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            About <span className="gradient-text">Me</span>
-          </h2>
-          <p className="text-muted-foreground text-lg">
-            I’m Muberra, originally from Turkey, now based in Montréal, married to Jai and mom to Kitkat. Here, I share my personal thoughts, research findings and past projects.
-          </p>
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              About <span className="gradient-text">Me</span>
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              I’m Muberra, originally from Turkey, now based in Montréal, married to Jai and mom to Kitkat. Here, I share my personal thoughts, research findings and past projects.
+            </p>
+          </div>
         </div>
 
-  {/* Stack on small screens, two columns on md+ */}
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+  {/* Keep cards row-based (stacked vertically) and match Posts max width */}
+  <div className="flex flex-col gap-8 mb-12 max-w-6xl mx-auto">
           {highlights.map((item, index) => (
             <Card 
               key={index} 
@@ -50,10 +52,8 @@ const About = () => {
                 {Array.isArray(item.description) ? (
                   <div className="text-muted-foreground space-y-2">
                     {item.description.map((entry: any, i: number) => (
-                      // responsive two-column row for each entry; date column is narrower on small
-                      <div key={i} className="grid grid-cols-[120px_1fr] md:grid-cols-[180px_1fr] gap-4 items-start">
-                        {/* allow wrapping on very small screens, but prevent wrap on md+ so date stays on one line */}
-                        <span className="text-foreground/70 tabular-nums whitespace-normal md:whitespace-nowrap">{entry.date}</span>
+                      <div key={i} className="grid grid-cols-[180px_1fr] gap-4 items-start">
+                        <span className="text-foreground/70 tabular-nums">{entry.date}</span>
                         <div>
                           {entry.institution && (
                             <a
@@ -94,9 +94,11 @@ const About = () => {
         </div>
 
         <div className="animate-fade-in" style={{ animationDelay: '0.6s' }}>
-          <p className="text-foreground/80 text-lg leading-relaxed">
-            {/* TODO */}
-          </p>
+          <div className="max-w-6xl mx-auto">
+            <p className="text-foreground/80 text-lg leading-relaxed">
+              {/* TODO */}
+            </p>
+          </div>
         </div>
 
       </div>
