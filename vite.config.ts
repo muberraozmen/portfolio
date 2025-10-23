@@ -3,10 +3,18 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
 // https://vitejs.dev/config/
-export default defineConfig(() => ({
-  // Set base to '/' for custom domains or local dev
-  // Set base to '/your-repo-name/' for GitHub Pages
+export default defineConfig({
   base: '/portfolio/',
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    }
+  },
   server: {
     host: "::",
     port: 8080,
@@ -17,4 +25,4 @@ export default defineConfig(() => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-}));
+});
