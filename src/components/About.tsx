@@ -36,7 +36,8 @@ const About = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-8 mb-12">
+  {/* Stack on small screens, two columns on md+ */}
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {highlights.map((item, index) => (
             <Card 
               key={index} 
@@ -49,8 +50,10 @@ const About = () => {
                 {Array.isArray(item.description) ? (
                   <div className="text-muted-foreground space-y-2">
                     {item.description.map((entry: any, i: number) => (
-                      <div key={i} className="grid grid-cols-[180px_1fr] gap-4 items-start">
-                        <span className="text-foreground/70 tabular-nums">{entry.date}</span>
+                      // responsive two-column row for each entry; date column is narrower on small
+                      <div key={i} className="grid grid-cols-[120px_1fr] md:grid-cols-[180px_1fr] gap-4 items-start">
+                        {/* allow wrapping on very small screens, but prevent wrap on md+ so date stays on one line */}
+                        <span className="text-foreground/70 tabular-nums whitespace-normal md:whitespace-nowrap">{entry.date}</span>
                         <div>
                           {entry.institution && (
                             <a
